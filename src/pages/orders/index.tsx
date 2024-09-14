@@ -67,18 +67,19 @@ function index() {
     getData()
   }, [ispage, search])
 
-  async function deleteAllDatas(){
-    if(arrIds.length){
-      let response = []
-      for(let i = 0; i < arrIds.length; i++){
-        response = await deleteOrder({id: arrIds[i]})
+  async function deleteAllDatas() {
+    if (arrIds.length) {
+      for (let i = 0; i < arrIds.length; i++) {
+        await deleteOrder({ id: arrIds[i] }); 
       }
-      arrIds = []
-      getData()
-    }else{
-      toast.error("O'chirish uchun mahsulot topilmadi !", {autoClose: 1200})
+      arrIds = [];
+      getData();
+    } else {
+      toast.error("O'chirish uchun mahsulot topilmadi !", { autoClose: 1200 });
     }
   }
+  
+  
 
   return (
     <>
