@@ -46,7 +46,7 @@ function index(props: any) {
             <TableBody>
               {array.map((index) => (
                 <TableRow key={index}>
-                  {thead.map((item: any, index: any) => {
+                  {thead.map((_item: any, index: any) => {
                     return (
                       <TableCell align="left" component={'th'} key={index} className="bg-[#f6f6f6]">
                         <Skeleton animation="wave" width={410} height={25} />

@@ -68,24 +68,36 @@ export default function SpringModal(props:any) {
   const {putOrder}:any = useStore(OrderStore)
 
 
-    async function postData(e:any){
-        e.preventDefault();
+  async function postData(e: any) {
+    e.preventDefault();
 
-        const payload = {
-            amount: +e.target[0].value,
-            client_phone_number: e.target[2].value,
-            client_full_name: e.target[4].value,
-            service_id: e.target[6].value
-        }
-       if(props.method == 'update'){
-        payload.id = props?.client?.id
-        payload.client_id = props?.client?.client_id
-        payload.status = props?.client?.status
-        await putOrder(payload)
-       }else{
+   
+    let payload: {
+        amount: number;
+        client_phone_number: string;
+        client_full_name: string;
+        service_id: string;
+        id?: number;
+        client_id?: number;
+        status?: string; 
+    } = {
+        amount: +e.target[0].value,
+        client_phone_number: e.target[2].value,
+        client_full_name: e.target[4].value,
+        service_id: e.target[6].value
+    };
+
+    
+    if (props.method === 'update') {
+        payload.id = props?.client?.id;
+        payload.client_id = props?.client?.client_id;
+        payload.status = props?.client?.status;  
+        await putOrder(payload);
+    } else {
         await props.postData(payload);
-       }
     }
+}
+
   return (
     <>
         <div>
